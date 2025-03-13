@@ -10,7 +10,6 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
-import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -34,7 +33,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhoneList(person.getPhoneList());
+        descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
@@ -49,14 +48,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code PhoneList} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhones(String... phones) { // Accept multiple phone numbers
-        PhoneList phoneList = new PhoneList();
-        for (String phone : phones) {
-            phoneList.addPhone(new Phone(phone));
-        }
-        descriptor.setPhoneList(phoneList);
+    public EditPersonDescriptorBuilder withPhone(String phone) {
+        descriptor.setPhone(new Phone(phone));
         return this;
     }
 

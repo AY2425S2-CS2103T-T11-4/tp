@@ -1,6 +1,5 @@
 package seedu.finclient.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +8,6 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
-import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.model.util.SampleDataUtil;
 
@@ -24,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private PhoneList phoneList;
+    private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -34,8 +32,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phoneList = new PhoneList();
-        phoneList.addPhone(new Phone(DEFAULT_PHONE));
+        phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -46,7 +43,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phoneList = personToCopy.getPhoneList();
+        phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
@@ -80,23 +77,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        Phone tempPhone = new Phone(phone);
-        phoneList = new PhoneList();
-        phoneList.addPhone(tempPhone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code PhoneList} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String... phones) {
-        ArrayList<Phone> phoneArrayList = new ArrayList<>();
-
-        for (String phone : phones) {
-            phoneArrayList.add(new Phone(phone)); // Convert each String to a Phone object
-        }
-
-        this.phoneList = new PhoneList(phoneArrayList); // Use PhoneList constructor
+        this.phone = new Phone(phone);
         return this;
     }
 
@@ -109,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phoneList, email, address, tags);
+        return new Person(name, phone, email, address, tags);
     }
 
 }

@@ -16,11 +16,7 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
-<<<<<<< HEAD
 import seedu.finclient.model.person.Remark;
-=======
-import seedu.finclient.model.person.PhoneList;
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -31,32 +27,22 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String phone;
     private final String email;
     private final String address;
-<<<<<<< HEAD
     private final String remark;
-=======
-    private final List<String> phones;
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-<<<<<<< HEAD
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark,
-=======
-    public JsonAdaptedPerson(@JsonProperty("name") String name,
-                             @JsonProperty("phones") List<String> phones,
-                             @JsonProperty("email") String email,
-                             @JsonProperty("address") String address,
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
-        this.phones = (phones != null) ? new ArrayList<>(phones) : new ArrayList<>();
+        this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
@@ -70,9 +56,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phones = source.getPhoneList().phoneList.stream()
-                .map(Phone::toString)
-                .collect(Collectors.toList());
+        phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
@@ -100,17 +84,13 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phones == null || phones.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Phone numbers"));
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-
-        PhoneList modelPhoneList = new PhoneList();
-        for (String phone : phones) {
-            if (!Phone.isValidPhone(phone)) {
-                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            modelPhoneList.addPhone(new Phone(phone));
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
+        final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -137,11 +117,7 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-<<<<<<< HEAD
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
-=======
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelTags);
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
     }
 
 }

@@ -11,8 +11,6 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.ALICE;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
-import static seedu.finclient.testutil.TypicalPersons.TOONOMBER;
-import static seedu.finclient.testutil.TypicalPersons.TWEENOMBER;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,8 +49,6 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
-
-        assertFalse(TOONOMBER.isSamePerson(TWEENOMBER));
     }
 
     @Test
@@ -96,9 +92,8 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName()
-                + ", phones=" + ALICE.getPhoneList() + ", email=" + ALICE.getEmail() + ", address="
-                + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -48,14 +48,6 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
-    // Manually added (Phone List)
-    public static final Person TOONOMBER = new PersonBuilder().withName("Too Nomber").withPhone("8482131", "81112222")
-            .withEmail("too@example.com").withAddress("chicago").build();
-
-    public static final Person TWEENOMBER = new PersonBuilder().withName("Twee Nomber")
-            .withPhone("8482131", "81112222", "99990000").withEmail("too@example.com")
-            .withAddress("chicago").build();
-
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
