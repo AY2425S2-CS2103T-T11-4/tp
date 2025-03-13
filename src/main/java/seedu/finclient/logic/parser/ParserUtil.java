@@ -13,7 +13,6 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Phone;
-import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -94,15 +93,6 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
-    }
-
-    public static Remark parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Remark(trimmedRemark);
     }
 
     /**
