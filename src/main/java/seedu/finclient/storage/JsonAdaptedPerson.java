@@ -16,6 +16,7 @@ import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String email;
     private final String address;
+    private final String remark;
     private final List<String> phones;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final boolean isHidden;
@@ -38,11 +40,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phones") List<String> phones,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("isHidden") boolean isHidden) {
+            @JsonProperty("remark") String remark, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("isHidden") boolean isHidden) {
         this.name = name;
         this.phones = (phones != null) ? new ArrayList<>(phones) : new ArrayList<>();
         this.email = email;
         this.address = address;
+        this.remark = remark;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList());
         email = source.getEmail().value;
         address = source.getAddress().value;
+        remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,11 +121,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
         final boolean modelIsHidden = isHidden;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelTags, modelIsHidden);
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags, modelIsHidden);
 
     }
 

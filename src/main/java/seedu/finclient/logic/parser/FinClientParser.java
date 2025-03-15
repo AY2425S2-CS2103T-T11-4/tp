@@ -18,6 +18,7 @@ import seedu.finclient.logic.commands.FindCommand;
 import seedu.finclient.logic.commands.HelpCommand;
 import seedu.finclient.logic.commands.HideCommand;
 import seedu.finclient.logic.commands.ListCommand;
+import seedu.finclient.logic.commands.RemarkCommand;
 import seedu.finclient.logic.commands.RevealCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 
@@ -69,6 +70,9 @@ public class FinClientParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -4,6 +4,7 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -39,6 +40,7 @@ public class PersonUtil {
 
         sb.append(PREFIX_EMAIL).append(person.getEmail().value).append(" ");
         sb.append(PREFIX_ADDRESS).append(person.getAddress().value).append(" ");
+        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
 
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")

@@ -163,13 +163,12 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(finClientStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
+        model.setFinClient(new seedu.finclient.model.FinClient());
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, model);
     }
 }

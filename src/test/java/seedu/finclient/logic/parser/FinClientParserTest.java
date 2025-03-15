@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -22,9 +23,11 @@ import seedu.finclient.logic.commands.ExitCommand;
 import seedu.finclient.logic.commands.FindCommand;
 import seedu.finclient.logic.commands.HelpCommand;
 import seedu.finclient.logic.commands.ListCommand;
+import seedu.finclient.logic.commands.RemarkCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.person.NameContainsKeywordsPredicate;
 import seedu.finclient.model.person.Person;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.testutil.EditPersonDescriptorBuilder;
 import seedu.finclient.testutil.PersonBuilder;
 import seedu.finclient.testutil.PersonUtil;
@@ -86,6 +89,14 @@ public class FinClientParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_remark() throws Exception {
+        final Remark remark = new Remark("Some remark.");
+        RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
     }
 
     @Test

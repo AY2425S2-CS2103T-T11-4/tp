@@ -25,6 +25,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     // Hidden detail flag
@@ -33,24 +34,27 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
     /**
      * Alternate constructor to allow hiding of details.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags, boolean isHidden) {
+    public Person(Name name, PhoneList phoneList, Email email,
+                  Address address, Remark remark, Set<Tag> tags, boolean isHidden) {
         requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
         this.isHidden = isHidden;
     }
@@ -78,6 +82,9 @@ public class Person {
     public Address getAddress() {
         return isHidden ? new Address("Hidden") : address;
     }
+
+    public Remark getRemark() {
+        return remark; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -127,13 +134,14 @@ public class Person {
                 && phoneList.equals(otherPerson.phoneList)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && remark.equals(otherPerson.remark)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phoneList, email, address, tags, isHidden);
+        return Objects.hash(name, phoneList, email, address, remark, tags, isHidden);
     }
 
     @Override
@@ -150,6 +158,7 @@ public class Person {
                     .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
+                    .add("remark", remark)
                     .add("tags", tags)
                     .toString();
         }
