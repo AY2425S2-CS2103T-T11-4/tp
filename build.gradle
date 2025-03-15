@@ -69,26 +69,8 @@ dependencies {
     testImplementation 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
 }
 
-task headless {
-    doLast {
-        println 'Setting headless mode properties.'
-        test {
-            systemProperties = [
-                    'testfx.robot': 'glass',
-                    'testfx.headless': 'true',
-                    'prism.order': 'sw',
-                    'prism.text': 't2k',
-            ]
-        }
-    }
-}
-
-// Makes sure that headless properties are set before running tests
-test.mustRunAfter headless
-
-
 shadowJar {
     archiveFileName = 'finclient.jar'
 }
 
-defaultTasks 'clean', 'headless', 'test'
+defaultTasks 'clean', 'test'

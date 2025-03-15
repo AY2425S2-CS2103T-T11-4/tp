@@ -97,6 +97,7 @@ public class HelpWindow extends UiPart<Stage> {
             }
         });
         stage.show();
+        stage.centerOnScreen();
     }
 
     /**
