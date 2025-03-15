@@ -60,8 +60,8 @@ public class JsonFinClientStorage implements FinClientStorage {
     }
 
     @Override
-    public void saveFinClient(ReadOnlyFinClient finclient) throws IOException {
-        saveFinClient(finclient, filePath);
+    public void saveFinClient(ReadOnlyFinClient addressBook) throws IOException {
+        saveFinClient(addressBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonFinClientStorage implements FinClientStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveFinClient(ReadOnlyFinClient finclient, Path filePath) throws IOException {
-        requireNonNull(finclient);
+    public void saveFinClient(ReadOnlyFinClient addressBook, Path filePath) throws IOException {
+        requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableFinClient(finclient), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableFinClient(addressBook), filePath);
     }
 
 }

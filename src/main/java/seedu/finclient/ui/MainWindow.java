@@ -186,10 +186,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            // force refresh
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

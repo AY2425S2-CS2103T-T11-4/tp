@@ -5,7 +5,6 @@ import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -96,24 +95,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
-    }
-
-    /**
-     * Hides details of the persons that satisfy the predicate.
-     */
-    public void hidePerson(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        internalList.filtered(predicate)
-                .forEach(Person::setHidden);
-    }
-
-    /**
-     * Reveals details of the persons that satisfy the predicate.
-     */
-    public void revealPerson(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        internalList.filtered(predicate)
-                .forEach(Person::setUnhidden);
     }
 
     /**

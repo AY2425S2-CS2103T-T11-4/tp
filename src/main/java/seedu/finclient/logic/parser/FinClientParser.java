@@ -16,9 +16,7 @@ import seedu.finclient.logic.commands.EditCommand;
 import seedu.finclient.logic.commands.ExitCommand;
 import seedu.finclient.logic.commands.FindCommand;
 import seedu.finclient.logic.commands.HelpCommand;
-import seedu.finclient.logic.commands.HideCommand;
 import seedu.finclient.logic.commands.ListCommand;
-import seedu.finclient.logic.commands.RevealCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 
 /**
@@ -78,12 +76,6 @@ public class FinClientParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case HideCommand.COMMAND_WORD:
-            return new HideCommandParser().parse(arguments);
-
-        case RevealCommand.COMMAND_WORD:
-            return new RevealCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

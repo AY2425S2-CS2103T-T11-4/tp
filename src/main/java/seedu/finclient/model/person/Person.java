@@ -2,8 +2,6 @@ package seedu.finclient.model.person;
 
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,9 +25,6 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    // Hidden detail flag
-    private boolean isHidden = false;
-
     /**
      * Every field must be present and not null.
      */
@@ -42,41 +37,20 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    /**
-     * Alternate constructor to allow hiding of details.
-     */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags, boolean isHidden) {
-        requireAllNonNull(name, phoneList, email, address, tags);
-        this.name = name;
-        this.phoneList = phoneList;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.isHidden = isHidden;
-    }
-
-    public void setHidden() {
-        this.isHidden = true;
-    }
-
-    public void setUnhidden() {
-        this.isHidden = false;
-    }
-
     public Name getName() {
         return name;
     }
 
     public PhoneList getPhoneList() {
-        return isHidden ? new PhoneList(new ArrayList<>(Arrays.asList(new Phone("00000000")))) : phoneList;
+        return phoneList;
     }
 
     public Email getEmail() {
-        return isHidden ? new Email("hidden@example.com") : email;
+        return email;
     }
 
     public Address getAddress() {
-        return isHidden ? new Address("Hidden") : address;
+        return address;
     }
 
     /**
@@ -85,13 +59,6 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    /**
-     * Returns true if the person is hidden.
-     */
-    public boolean getIsHidden() {
-        return isHidden;
     }
 
     /**
@@ -133,25 +100,18 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phoneList, email, address, tags, isHidden);
+        return Objects.hash(name, phoneList, email, address, tags);
     }
 
     @Override
     public String toString() {
-        // If the person is hidden, return only non-sensitive details.
-        if (isHidden) {
-            return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("details", "Sensitive details are hidden")
-                    .toString();
-        } else {
-            return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phones", phoneList)
-                    .add("email", email)
-                    .add("address", address)
-                    .add("tags", tags)
-                    .toString();
-        }
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("phones", phoneList)
+                .add("email", email)
+                .add("address", address)
+                .add("tags", tags)
+                .toString();
     }
+
 }
