@@ -15,12 +15,12 @@
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene width="450" height="330">
+    <Scene width="550" height="620">
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <AnchorPane prefWidth="450" prefHeight="340" style="fx-background-color: #484848">
+      <AnchorPane prefWidth="550" prefHeight="610" style="fx-background-color: #484848">
         <children>
           <VBox fx:id="helpMessageContainer" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
             <padding>
