@@ -1,0 +1,32 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+
+
+start
+:User executes Help command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Help is opened])
+    :Focus Help window;
+else ([Help not opened])
+    :Open Help window;
+endif
+if () then ([User wants to read detailed guide])
+    :User copies URL;
+    :User opens URL in browser;
+    :User reads detailed User Guide;
+    :User returns to FinClient's Help window;
+else ([User reads provided Help message])
+endif
+:User finishes using Help;
+if () then ([User clicks on ESC key])
+else ([User clicks on "X"])
+endif
+:Close Help window;
+stop
+@enduml
