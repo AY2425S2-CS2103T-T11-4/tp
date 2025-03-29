@@ -25,21 +25,22 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-  - [Viewing help](#viewing-help)
-  - [Adding a person](#adding-a-person)
-  - [Listing all persons](#listing-all-persons)
-  - [Editing a person](#editing-a-person)
-  - [Locating persons by name](#locating-persons-by-name)
-  - [Deleting a person](#deleting-a-person)
-  - [Hiding a person](#hiding-a-person)
-  - [Revealing a person](#revealing-a-person)
-  - [Adding remarks](#adding-remarks)
-  - [Sorting contacts](#sorting-contacts)
-  - [Clearing all entries](#clearing-all-entries)
-  - [Exiting the program](#exiting-the-program)
-  - [Saving the data](#saving-the-data)
-  - [Editing the data file](#editing-the-data-file)
-  - [Archiving data files](#archiving-data-files)
+    - [Viewing help](#viewing-help)
+    - [Adding a person](#adding-a-person)
+    - [Listing all persons](#listing-all-persons)
+    - [Editing a person](#editing-a-person)
+    - [Locating persons by name](#locating-persons-by-name)
+    - [Deleting a person](#deleting-a-person)
+    - [Hiding a person](#hiding-a-person)
+    - [Revealing a person](#revealing-a-person)
+    - [Limit orders and Call Auction calculator](#order)
+    - [Adding remarks](#adding-remarks)
+    - [Sorting contacts](#sorting-contacts)
+    - [Clearing all entries](#clearing-all-entries)
+    - [Exiting the program](#exiting-the-program)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+    - [Archiving data files](#archiving-data-files)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
@@ -62,15 +63,15 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 1. Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Please refer to the [Features](#features) below for details of each command.
 
@@ -186,7 +187,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FinClient.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### <span id="hiding-a-person">Hiding a person : `hide`</span>
+### <span id="hiding-a-person">Hiding details : `hide`</span>
 
 Hides the details of the specified person in FinClient.
 
@@ -197,10 +198,11 @@ Format: `hide all|INDEX|name`
 * The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `hide 2` hides the 2nd person in FinClient.
+* `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
+  ![example of a hidden person](images/hidden_person.png)
 
-### <span id="revealing-a-person">Revealing a person : `reveal`</span>
+### <span id="revealing-a-person">Revealing details : `reveal`</span>
 
 Reveals the details of the specified person in FinClient.
 
@@ -211,8 +213,34 @@ Format: `reveal all|INDEX|name`
 * The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `reveal 2` reveals the 2nd person in FinClient.
+* `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
+
+### <span id="order">Limit orders and Call Auction calculator : `order`</span>
+
+Records a limit order for a specific contact in FinClient.
+
+The [call auction](https://www.investopedia.com/terms/c/call-auction.asp) calculator uses the aggregated orders to determine a clearing price.
+
+Format: `order INDEX [o/TYPE am/AMOUNT at/PRICE]`
+
+* Records a limit order for the person specified at `INDEX`.
+* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
+* If only the index is provided, the order will be recorded as an empty order.
+* The order type can be `BUY` or `SELL`.
+* The amount must be a positive integer.
+* The price must be a positive decimal number.
+
+Examples:
+* `order 1` records an empty order for the person listed at index 1.
+* `order 1 o/buy am/10 at/9.50` records a buy order of 5 units at $5.50 for the person listed at index 1.
+* `order 1 o/sell am/10 at/10.50` records a sell order of 10 units at $10.50 for the person listed at index 1.
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Design choice:**
+Since FinClient is designed for a single financial instrument, every order recorded relates to that same asset.
+</div>
 
 ### <span id="adding-remarks">Adding remarks: `remark`</span>
 
@@ -305,4 +333,3 @@ _Details coming soon ..._
  **Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE` <br> e.g., `order 1 o/buy am/5 at/5.50`
  **List** | `list`
  **Help** | `help`
-
