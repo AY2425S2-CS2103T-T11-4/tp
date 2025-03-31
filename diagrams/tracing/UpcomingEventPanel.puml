@@ -1,0 +1,41 @@
+@startuml
+
+' UI Component
+class UpcomingEventsPanel {
+    - HBox upcomingContainer
+    - VBox dateBox
+    - HBox eventsBox
+    - Label dayOfWeekLabel
+    - Label dateLabel
+    --
+    + UpcomingEventsPanel(List<Person>)
+}
+
+' Domain Model
+class Person {
+    - Name name
+    - Remark remark
+    + getName(): Name
+    + getRemark(): Remark
+}
+
+class Remark {
+    - String value
+    - Optional<LocalDateTime> timestamp
+    + getTimestamp(): Optional<LocalDateTime>
+}
+
+' JavaFX components
+class VBox
+class HBox
+class Label
+
+' Relationships
+UpcomingEventsPanel --> Person : uses
+Person --> Remark : has
+UpcomingEventsPanel --> VBox
+UpcomingEventsPanel --> HBox
+UpcomingEventsPanel --> Label
+Remark --> "Optional<LocalDateTime>" : timestamp
+
+@enduml
