@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+' --- Order Update Command Flow ---
+box Logic LOGIC_COLOR_T1
+  participant ":LogicManager" as LogicManager LOGIC_COLOR
+  participant ":FinClientParser" as FinClientParser LOGIC_COLOR
+  participant ":OrderCommandParser" as OrderCommandParser LOGIC_COLOR
+  participant "o:OrderCommand" as OrderCommand LOGIC_COLOR
+end box
+
+box "Model" MODEL_COLOR_T1
+  participant "m:Model" as Model MODEL_COLOR
+  participant "c:CallAuctionCalculator" as CallAuctionCalculator MODEL_COLOR
+end box
+
+box "UI" UI_COLOR_T1
+  participant ":UI" as GUI UI_COLOR
+end box
+
+' Order update sequence
+[-> LogicManager : execute("order <details>")
+activate LogicManager
+
+LogicManager -> FinClientParser : parseCommand("order <details>")
+activate FinClientParser
+
+create OrderCommandParser
+FinClientParser -> OrderCommandParser : parse("details")
+activate OrderCommandParser
+
+create OrderCommand
+OrderCommandParser -> OrderCommand : instantiate OrderCommand
+activate OrderCommand
+
+OrderCommandParser --> FinClientParser : OrderCommand instance
+deactivate OrderCommandParser
+
+FinClientParser --> LogicManager : OrderCommand instance
+deactivate FinClientParser
+
+LogicManager -> OrderCommand : execute(model)
+activate OrderCommand
+
+OrderCommand -> Model : updateOrder(personId, orderDetails)
+activate Model
+Model --> OrderCommand : order updated
+deactivate Model
+
+OrderCommand --> LogicManager : return success ()
+deactivate OrderCommand
+
+[<- LogicManager : success
+
+' --- Clearing Price Query Flow from GUI ---
+GUI -> LogicManager : getClearingPrice()
+
+LogicManager -> Model : calculateClearingPrice()
+activate Model
+
+Model -> CallAuctionCalculator : computeClearingPrice(model.getOrders())
+activate CallAuctionCalculator
+
+CallAuctionCalculator -> CallAuctionCalculator : aggregate orders and compute clearing price
+CallAuctionCalculator --> Model : clearingPrice
+deactivate CallAuctionCalculator
+
+Model --> LogicManager : clearingPrice
+deactivate Model
+
+LogicManager --> GUI : return clearingPrice
+deactivate LogicManager
+@enduml
