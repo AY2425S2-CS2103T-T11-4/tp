@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+' --- Order Update Command Flow ---
+box Logic LOGIC_COLOR_T1
+  participant ":LogicManager" as LogicManager LOGIC_COLOR
+  participant ":FinClientParser" as FinClientParser LOGIC_COLOR
+  participant "h:HelpCommand" as HelpCommand LOGIC_COLOR
+end box
+
+box "UI" UI_COLOR_T1
+  participant ":MainWindow" as MainWindow UI_COLOR
+  participant ":HelpWindow" as HelpWindow UI_COLOR
+end box
+
+' Order update sequence
+[-> LogicManager : execute("help")
+activate LogicManager
+
+LogicManager -> FinClientParser : parseCommand("help")
+activate FinClientParser
+
+create HelpCommand
+FinClientParser -> HelpCommand : instantiate HelpCommand
+activate HelpCommand
+
+FinClientParser --> LogicManager : OrderCommand instance
+deactivate FinClientParser
+
+HelpCommand --> LogicManager : return Help CommandResult
+deactivate HelpCommand
+
+LogicManager -> MainWindow : Help CommandResult
+activate MainWindow
+
+
+MainWindow -> HelpWindow : handleHelp()
+activate HelpWindow
+
+HelpWindow -> HelpWindow : show()
+activate HelpWindow
+HelpWindow --> HelpWindow : hide()
+deactivate HelpWindow
+
+HelpWindow --> MainWindow
+deactivate HelpWindow
+
+MainWindow --> LogicManager : return Help CommandResult
+deactivate MainWindow
+deactivate LogicManager
+@enduml
