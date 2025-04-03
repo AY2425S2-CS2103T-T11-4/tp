@@ -182,3 +182,15 @@ h6 {
 h1[id], h2[id], h3[id], h4[id], h5[id] {
   scroll-margin-top: 60px;
 }
+
+img {
+  display: block;
+  margin: auto;
+  width: 75%;
+}
+
+.no-style {
+  display: inline;
+  margin: 0;
+  width: auto;
+}
