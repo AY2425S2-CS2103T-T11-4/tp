@@ -46,7 +46,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "developer-guide": "Developer Guide",
+        "finclient-developer-guide": "FinClient Developer Guide",
         "table-of-contents": "Table of contents",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
