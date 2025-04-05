@@ -51,14 +51,14 @@ Person *--> "1" Email
 Person *--> "1" Address
 Person *--> "1" Order
 Person *--> "*" Tag
-Person *--> "*" Remark
-Person *--> "*" Company
-Person *--> "*" Job
-Person *--> "*" StockPlatform
-Person *--> "*" Networth
+Person *--> "0...1" Remark
+Person *--> "0...1" Company
+Person *--> "0...1" Job
+Person *--> "0...1" StockPlatform
+Person *--> "0...1" Networth
 
 PhoneList o--> "1...3" Phone
-Remark o--> "*" LocalDateTime : <<has deadline>>
+Remark o--> "1" LocalDateTime : <<has deadline>>
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
