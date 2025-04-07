@@ -557,6 +557,6 @@ with(this){return _c('h3',{attrs:{"id":"saving-data"}},[_v("Saving data"),_c('a'
 with(this){return _c('ol',[_c('li',[_v("Dealing with missing/corrupted data files.\n"),_c('ol',[_c('li',[_v("Prerequisite: Requires a copy of working finclient.json.")]),_v(" "),_c('li',[_v("Test case: Delete finclient.json. "),_c('br'),_v("\nExpected: App should be repopulated with a copy of sample data and work again, without any presence of old data and a fresh copy of finclient.json is saved.")]),_v(" "),_c('li',[_v("Test case: Use any "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("add/edit/delete/hide/reveal/order")]),_v(" "),_c('br'),_v("\nExpected: App should automatically save data upon use of the above commands.")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{staticClass:"no-style",attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.6.0")]),_v(", generated on Mon, 7 Apr 2025, 23:47:29 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{staticClass:"no-style",attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.6.0")]),_v(", generated on Tue, 8 Apr 2025, 0:07:53 GMT+8]")])])])}
 }];
   
