@@ -28,6 +28,6 @@ Person *--> Job
 Person *--> StockPlatform
 Person *--> Networth
 
-Remark o--> "*" LocalDateTime : <<has deadline>>
+Remark o--> "*" LocalDateTime : <<has Timestamp>>
 
 @enduml

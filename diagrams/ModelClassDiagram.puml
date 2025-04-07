@@ -58,7 +58,7 @@ Person *--> "0...1" StockPlatform
 Person *--> "0...1" Networth
 
 PhoneList o--> "1...3" Phone
-Remark o--> "1" LocalDateTime : <<has deadline>>
+Remark o--> "1" LocalDateTime : <<has Timestamp>>
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
