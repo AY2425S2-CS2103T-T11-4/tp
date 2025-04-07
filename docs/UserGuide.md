@@ -149,7 +149,7 @@ Shows a scrollable message containing current available commands and provides a 
 Format: `help`
 
 <figure>
-  <img src="images/help_message.png" alt="result for 'help'" width="600px">
+  <img src="images/helpMsg.png" alt="result for 'help'" width="600px">
   <figcaption align="center"><strong>Figure 2:</strong> Help Message.</figcaption>
 </figure>
 
