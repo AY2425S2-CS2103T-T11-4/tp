@@ -71,7 +71,15 @@
         "appendix-planned-enhancements": "Appendix: Planned Enhancements",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
+        "adding-a-person": "Adding a person",
+        "editing-a-person": "Editing a person",
         "deleting-a-person": "Deleting a person",
+        "finding-a-person": "Finding a person",
+        "listing-all-contacts": "Listing all contacts",
+        "hiding-and-revealing-contacts": "Hiding and revealing contacts",
+        "limit-orders-and-amp-call-auction-calculator": "Limit Orders &amp; Call Auction Calculator",
+        "sorting-contacts": "Sorting Contacts",
+        "clearing-all-contacts": "Clearing all contacts",
         "saving-data": "Saving data"
       },
       "headingKeywords": {}
